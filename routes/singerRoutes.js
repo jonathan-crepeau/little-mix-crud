@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers');
+const controllers = require('../controllers');
 
-router.get('/test',controller.singers.test);
+// Test Route
+router.get('/test',controllers.singers.test);
 
-router.post('/', controller.singers.create);
+// Create Route
+router.post('/', controllers.singers.create);
+
+// Find Singer By Name Route
+router.get('/', controllers.singers.find)
 
 module.exports = router;
