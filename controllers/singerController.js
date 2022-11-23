@@ -27,9 +27,31 @@ const find = (req, res) => {
     });
 };
 
+const destroy = (req, res) => {
+    db.Singer.deleteOne({hometown: req.body.hometown}, (err, deletedSinger) => {
+        if (err) return res.status(500).json({
+            message: 'Something went wrong finding that single singer..',
+            error: err
+        });
+        res.json(deletedSinger);
+    });
+};
+
+const destroyMany = (req, res) => {
+    db.Singer.deleteMany({hometown: req.body.hometown}, (err, deletedSingers) => {
+        if (err) return res.status(500).json({
+            message: "Something went wrong finding those singers..",
+            error: err,
+        });
+        res.json(deletedSingers);
+    });
+};
+
 
 module.exports = {
     test,
     create,
-    find
+    find,
+    destroy,
+    destroyMany
 };
