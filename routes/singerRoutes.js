@@ -9,7 +9,10 @@ router.get('/test',controllers.singers.test);
 router.post('/', controllers.singers.create);
 
 // Find Singer By Name Route
-router.get('/', controllers.singers.find)
+router.get('/', controllers.singers.find);
+
+// Update Singer
+router.put('/', controllers.singers.updateOne);
 
 // Delete All Matching Records
 router.delete('/', controllers.singers.destroy);

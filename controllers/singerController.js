@@ -27,6 +27,19 @@ const find = (req, res) => {
     });
 };
 
+// Update One Singer
+const updateOne = async (req, res) => {
+    // NOTE - Without adding {new: true}, the res.json(updatedSinger) object does not include the updated name:
+    db.Singer.findByIdAndUpdate(req.body.id, {name: req.body.name}, {new: true}, (err, updatedSinger) => {
+        if (err) return res.status(500).json({
+            message: "Could not update the single singer..",
+            error: err,
+        });
+        res.json(updatedSinger);
+    });
+};
+
+// Destroy Single Singer
 const destroy = (req, res) => {
     db.Singer.deleteOne({hometown: req.body.hometown}, (err, deletedSinger) => {
         if (err) return res.status(500).json({
@@ -52,6 +65,7 @@ module.exports = {
     test,
     create,
     find,
+    updateOne,
     destroy,
     destroyMany
 };
